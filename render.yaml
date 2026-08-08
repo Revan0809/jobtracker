@@ -26,4 +26,11 @@ services:
       - key: REFRESH_TOKEN_EXPIRE_DAYS
         value: "30"
       - key: CORS_ORIGINS
-        value: "https://your-app.vercel.app"
+        value: "https://jobtracker-nu-black.vercel.app"
+      # Render's default Python (3.14 as of writing) has no prebuilt wheel for
+      # pydantic-core 2.27.2, which then fails to build from source in Render's
+      # read-only sandbox. backend/runtime.txt pins 3.12 but wasn't honored when
+      # the service was created via the API with a custom rootDir, so it's
+      # pinned here too as a second, confirmed-working source of truth.
+      - key: PYTHON_VERSION
+        value: "3.12.7"
