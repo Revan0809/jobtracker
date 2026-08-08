@@ -1,0 +1,12 @@
+@import "tailwindcss";
+
+@theme {
+  --color-status-applied: #3b82f6;
+  --color-status-interview: #f59e0b;
+  --color-status-offer: #22c55e;
+  --color-status-rejected: #ef4444;
+}
+
+body {
+  @apply bg-slate-50 text-slate-900;
+}
