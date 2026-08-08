@@ -15,8 +15,12 @@ branch_labels = None
 depends_on = None
 
 application_status = postgresql.ENUM(
-    "APPLIED", "INTERVIEW", "OFFER", "REJECTED", name="application_status"
+    "APPLIED", "INTERVIEW", "OFFER", "REJECTED", name="application_status", create_type=False
 )
+# create_type=False above: we create/drop the type explicitly (once), instead of
+# letting create_table's implicit before_create hook do it — with the hook left
+# on, create_table tries to CREATE TYPE a second time and collides with our
+# explicit call ("type already exists").
 
 
 def upgrade() -> None:
